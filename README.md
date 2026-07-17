@@ -5,8 +5,7 @@ The marketing / showcase site for [Cairn](https://github.com/johnnycube/cairn-co
 docs live at https://docs.opencairn.org.
 
 It's a **static site** (plain HTML + CSS, no build step), themed with the same
-slate + Summit Teal palette as the Cairn web UI. Charts shown in the dashboard
-screenshot keep their own series colors.
+slate + Summit Teal palette as the Cairn web UI.
 
 ## Develop / preview
 

@@ -1,0 +1,69 @@
+# CI — sanity-check the static site on every branch and PR, and deploy to the
+# static web host on a v* release tag. There is no build step, so the check
+# verifies the page and every locally referenced asset.
+#
+# GitHub is the golden source; the old .gitea pipeline is retired.
+#
+# Deploy secrets (repo Settings → Secrets and variables → Actions):
+#   DEPLOY_SSH_PASSWORD, DEPLOY_SSH_HOST, DEPLOY_SSH_USER, DEPLOY_PATH
+
+name: Check and deploy
+
+on:
+  push:
+    branches: ['**']
+    tags: ['v*']
+  pull_request:
+
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check page and local assets
+        run: |
+          test -f index.html
+          test -f styles.css
+          # every local href/src referenced from index.html must exist
+          missing=0
+          for ref in $(grep -oE '(href|src)="[^"]+"' index.html \
+                       | sed -E 's/^(href|src)="//; s/"$//' \
+                       | grep -vE '^(https?:|#|mailto:|\/$)'); do
+            if [ ! -f "$ref" ]; then
+              echo "missing asset: $ref"
+              missing=1
+            fi
+          done
+          exit $missing
+
+      # Deploy only on a v* release tag.
+      - name: Install rsync + sshpass
+        if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
+        run: |
+          if ! command -v rsync >/dev/null || ! command -v sshpass >/dev/null; then
+            sudo apt-get update -qq
+            sudo apt-get install -y rsync sshpass
+          fi
+
+      - name: Upload to web host
+        if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
+        env:
+          SSHPASS: ${{ secrets.DEPLOY_SSH_PASSWORD }}
+          DEPLOY_HOST: ${{ secrets.DEPLOY_SSH_HOST }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_SSH_USER }}
+          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
+        run: |
+          mkdir -p ~/.ssh && chmod 700 ~/.ssh
+          ssh-keyscan -H "$DEPLOY_HOST" >> ~/.ssh/known_hosts 2>/dev/null
+          sshpass -e rsync -avz --delete \
+            --chmod=D755,F644 \
+            --exclude '.git*' --exclude 'README.md' --exclude '.github' \
+            ./ \
+            "$DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH"

@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Cairn — your training data, your server</title>
+<meta name="description" content="Cairn is a self-hosted, multi-source activity tracker. Import from Strava, Garmin, file uploads and manual entry; merge per-field; segments, training load, a social layer, and agent access over MCP. Open source (AGPL-3.0)." />
+<link rel="preload" href="assets/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div class="backdrop"></div>
+
+<header>
+  <div class="wrap">
+    <nav>
+      <a class="brand" href="/">
+        <span class="mark"><svg viewBox="0 0 24 24" fill="none"><path d="M3 19h18L14.5 7l-3 5-2-3L3 19z" fill="#04201c"/></svg></span>
+        Cairn
+      </a>
+      <div class="links">
+        <a href="#why">Why</a>
+        <a href="#features">Features</a>
+        <a href="#platforms">Platforms</a>
+        <a href="#roadmap">Roadmap</a>
+        <a href="#agents">Agents &amp; MCP</a>
+        <a href="#selfhost">Self-host</a>
+        <a href="https://docs.opencairn.org">Docs</a>
+      </div>
+      <a class="btn cta" href="https://github.com/johnnycube/cairn-core">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.9a3.4 3.4 0 0 0-.9-2.6c3-.3 6.2-1.5 6.2-6.7A5.2 5.2 0 0 0 20 4.8a4.9 4.9 0 0 0-.1-3.6s-1.1-.3-3.6 1.4a12.3 12.3 0 0 0-6.6 0C7.2.9 6.1 1.2 6.1 1.2A4.9 4.9 0 0 0 6 4.8a5.2 5.2 0 0 0-1.4 3.7c0 5.2 3.2 6.4 6.2 6.7a3.4 3.4 0 0 0-.9 2.6V22"/></svg>
+        Source
+      </a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <span class="pill"><span class="dot"></span> Self-hosted · AGPL-3.0 · single binary</span>
+    <h1>Your training data.<br /><span class="grad">Your server.</span></h1>
+    <p class="lead">Cairn is a self-hosted, multi-source activity tracker. Pull from Strava, Garmin, file uploads and manual entry — then merge every source of the same workout, field by field, under rules you control.</p>
+    <div class="actions">
+      <a class="btn primary" href="#selfhost">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        Get started
+      </a>
+      <a class="btn" href="#features">Explore features</a>
+    </div>
+    <p class="note">No SaaS lock-in. No data sold. One Go binary serves the API and the web UI; provider workers run as separate processes.</p>
+
+    <div class="shot">
+      <img src="assets/dashboard.png" alt="Cairn dashboard — activity feed, training load, and segment leaderboard" />
+    </div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<div class="trust">
+  <div class="wrap">
+    <div class="row">
+      <span><b>Strava</b></span><span class="sep"></span>
+      <span><b>Garmin</b></span><span class="sep"></span>
+      <span><b>GPX / TCX / FIT</b></span><span class="sep"></span>
+      <span><b>Manual entry</b></span><span class="sep"></span>
+      <span><b>ActivityPub</b> federation (beta)</span><span class="sep"></span>
+      <span><b>MCP</b> for agents</span>
+    </div>
+  </div>
+</div>
+
+<!-- WHY -->
+<section class="block" id="why">
+  <div class="wrap">
+    <span class="eyebrow">Why Cairn exists</span>
+    <div class="h2">Your effort shouldn't be a subscription</div>
+    <div class="prose">
+      <p>Cairn started with a familiar frustration. Years of runs, rides and hikes — <b>your</b> heart rate, <b>your</b> routes, <b>your</b> progress — end up on platforms that treat them as their asset: gated behind logins, rationed through APIs, and increasingly reserved for whichever subscription tier you're willing to pay for this year.</p>
+      <p>The pattern rarely reverses. Prices climb, features you relied on move up a tier, the product slowly bends away from the people who use it — and switching means leaving your history behind. None of that is surprising anymore. It's just not how your own training story should work.</p>
+      <p>Cairn is the alternative: an open-source tracker that runs on your hardware. It imports your full history while the doors are open, keeps recording from any device or file you throw at it, and stores everything in a database you can query, back up and export at will. If a platform changes its terms tomorrow, your archive doesn't notice.</p>
+      <p class="closer">No gatekeeping. No tiers. No exit fees. Just your data, on your server.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="block" id="features">
+  <div class="wrap">
+    <span class="eyebrow">Everything in one place</span>
+    <div class="h2">One workout, every source — reconciled</div>
+    <p class="sub">Cairn ingests the same activity from multiple providers and merges it per-field under a policy you set. Your edits are always preserved.</p>
+
+    <div class="grid">
+      <div class="card">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h10M4 17h7"/></svg></div>
+        <h3>Per-field merge engine</h3>
+        <p>Title from one source, GPS from another, power from a third — each field group resolves to the best source via a configurable priority list.</p>
+      </div>
+      <div class="card">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18M3 12h18"/></svg></div>
+        <h3>Multi-source import</h3>
+        <p>Strava &amp; Garmin via per-user OAuth; GPX/TCX/FIT uploads; manual entry. Everything funnels through one ingest pipeline.</p>
+      </div>
+      <div class="card">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l5-5 4 3 8-9"/></svg></div>
+        <h3>Segments &amp; best-efforts</h3>
+        <p>PostGIS segment matching with leaderboards and ranks, plus automatic best-effort and personal-record detection.</p>
+      </div>
+      <div class="card">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19V5m0 14h16M8 15l3-4 3 2 4-6"/></svg></div>
+        <h3>Training load</h3>
+        <p>CTL / ATL / TSB computed from your full history — fitness, fatigue and form, on charts that stay yours.</p>
+      </div>
+      <div class="card">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0M16 6a3 3 0 0 1 0 6"/></svg></div>
+        <h3>Social, your way</h3>
+        <p>Follow, feeds, profiles, kudos, comments, clubs and moderation — plus optional ActivityPub federation across instances.</p>
+        <span class="tag">Federation: beta</span>
+      </div>
+      <div class="card">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+        <h3>You own the data</h3>
+        <p>Streams in TimescaleDB, raw blobs in your object store, export anytime. Self-hosted means self-owned.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLATFORMS & DATA -->
+<section class="block" id="platforms">
+  <div class="wrap">
+    <span class="eyebrow">Supported today</span>
+    <div class="h2">Platforms &amp; data fields</div>
+    <p class="sub">Four ways in — and every one lands in the same ingest pipeline, so a file upload or manual entry merges exactly like a provider import.</p>
+
+    <div class="table-wrap">
+      <table class="ptable">
+        <thead>
+          <tr><th>Source</th><th>Connection</th><th>What comes in</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Strava</td>
+            <td>Per-user OAuth, webhook-driven sync</td>
+            <td>Activities, sensor streams, laps, segment efforts, photos</td>
+          </tr>
+          <tr>
+            <td>Garmin Connect</td>
+            <td>Per-user OAuth through the standalone Garmin worker</td>
+            <td>Activities with full sensor streams and laps</td>
+          </tr>
+          <tr>
+            <td>File upload</td>
+            <td>GPX, TCX and FIT files</td>
+            <td>Anything your device or another platform exports</td>
+          </tr>
+          <tr>
+            <td>Manual entry</td>
+            <td>Web form</td>
+            <td>The same first-class fields — no recording needed</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="datafields">
+      <div class="dfrow">
+        <h4>Summary metrics</h4>
+        <p>Distance, moving &amp; elapsed time, elevation gain and loss, average &amp; max speed, heart rate, power (average, max, normalized), cadence, temperature, calories, TSS &amp; intensity factor, pool lengths &amp; strokes.</p>
+      </div>
+      <div class="dfrow">
+        <h4>Time-series streams</h4>
+        <p>GPS track, altitude, speed, heart rate, power, cadence, grade, temperature, left/right balance, torque effectiveness, pedal smoothness, vertical oscillation, ground contact time, stride length, respiration rate, core temperature.</p>
+      </div>
+      <div class="dfrow">
+        <h4>Computed by Cairn</h4>
+        <p>Segments &amp; leaderboards, best efforts, personal records, training load (CTL / ATL / TSB), laps, start-place geocoding, photos &amp; attachments — across 18 sports with their disciplines.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section class="block" id="roadmap">
+  <div class="wrap">
+    <span class="eyebrow">Roadmap</span>
+    <div class="h2">More providers on the way</div>
+    <p class="sub">Providers are standalone workers that speak a small proto + NATS contract, so a new platform never touches the core. These are next in line — ordered by demand, no dates promised.</p>
+    <div class="grid">
+      <div class="card">
+        <h3>Polar Flow</h3>
+        <p>Import via Polar AccessLink for the Vantage, Pacer and Grit X lines.</p>
+        <span class="tag">Planned</span>
+      </div>
+      <div class="card">
+        <h3>Suunto</h3>
+        <p>Watch and dive-computer workouts through the Suunto partner API.</p>
+        <span class="tag">Planned</span>
+      </div>
+      <div class="card">
+        <h3>COROS</h3>
+        <p>Pace, Apex and Vertix activities via the COROS training API.</p>
+        <span class="tag">Planned</span>
+      </div>
+      <div class="card">
+        <h3>Wahoo</h3>
+        <p>Rides and workouts from ELEMNT head units via the Wahoo Cloud API.</p>
+        <span class="tag">Exploring</span>
+      </div>
+      <div class="card">
+        <h3>Apple Health</h3>
+        <p>Apple Watch workouts — likely via companion export, as there is no server-side API.</p>
+        <span class="tag">Exploring</span>
+      </div>
+      <div class="card">
+        <h3>Your provider here</h3>
+        <p>Implement the worker contract in any language and plug it in — the Python Garmin worker is the template.</p>
+        <span class="tag">Contribute</span>
+      </div>
+    </div>
+    <p class="roadmap-note">Also watching: Zwift, Fitbit, Whoop, Oura and komoot. Want one sooner? Open an issue — demand decides the order.</p>
+  </div>
+</section>
+
+<!-- AGENTS / MCP -->
+<section class="block" id="agents">
+  <div class="wrap">
+    <span class="eyebrow">New</span>
+    <div class="h2">Connect your agents over MCP</div>
+    <p class="sub">Cairn is an OAuth 2.1 authorization server, so native apps, third-party clients and AI agents all authenticate the same secure way — scoped to a single user.</p>
+    <div class="split">
+      <ul>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span><b>Model Context Protocol server</b> — let an assistant read your activities, stats, training load and segments, scoped to your account.</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span><b>OAuth everywhere it matters</b> — authorization-code + PKCE and dynamic client registration for native iOS/Android and third-party apps.</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span><b>Granular scopes</b> — grant read-only access to an agent without handing over your whole account.</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span><b>Still simple for humans</b> — password, OIDC login and passkeys remain first-class.</span></li>
+      </ul>
+      <div class="code">
+        <div class="bar"><i></i><i></i><i></i></div>
+        <pre><span class="c"># Point your agent at your Cairn instance</span>
+<span class="k">mcp</span> connect https://cairn.example/mcp
+
+<span class="c"># OAuth runs automatically (PKCE + DCR),</span>
+<span class="c"># scoped read-only to your account:</span>
+<span class="k">tools</span>:
+  - list_activities
+  - get_activity
+  - activity_stats
+  - personal_records
+  - profile</pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SELF-HOST -->
+<section class="block" id="selfhost">
+  <div class="wrap">
+    <span class="eyebrow">Run it yourself</span>
+    <div class="h2">Up and running in minutes</div>
+    <p class="sub">One distroless binary with the web UI embedded, Postgres + TimescaleDB + PostGIS, NATS, and the provider workers you want. Deploy with Docker Compose or the included Kubernetes manifests.</p>
+    <div class="split">
+      <div class="code">
+        <div class="bar"><i></i><i></i><i></i></div>
+        <pre><span class="c"># Pull the core + the workers you use</span>
+<span class="k">docker</span> compose up -d
+
+<span class="c"># core  → API + embedded web UI</span>
+<span class="c"># strava worker (Go), garmin worker (Python)</span>
+<span class="c"># each a separate, swappable process</span>
+
+<span class="s">→ open https://cairn.example</span></pre>
+      </div>
+      <ul>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span><b>Hexagonal core</b> — a clean domain → port → adapter architecture that's a pleasure to extend.</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span><b>Pluggable providers</b> — workers are standalone repos that speak a proto + NATS contract; write your own.</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span><b>Open source</b> — AGPL-3.0 core, free and yours to fork; the provider contract and workers are Apache-2.0.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="block" id="about">
+  <div class="wrap">
+    <span class="eyebrow">About</span>
+    <div class="h2">Who's behind Cairn</div>
+    <div class="prose">
+      <p>Hi, I'm <b>Johannes Küber</b> — sports enthusiast, programmer and security expert. When I'm not building software I'm usually out running, riding or in the mountains, which is exactly where all this data comes from.</p>
+      <p>A platform like this has lived on my own server in one form or another for years. I've built it, outgrown it and rewritten it several times — as watches changed, providers came and went, and my ideas about training data matured. In 2026 I decided the latest rewrite shouldn't stay private, and Cairn became open source under AGPL-3.0.</p>
+      <p>The security background shapes the project more than any feature list: OAuth 2.1 with PKCE-only flows, scoped tokens, and a single visibility choke-point for every read aren't add-ons — they're the foundation. Questions, ideas, or war stories about liberating your own data? Say hi at <a href="mailto:contact@opencairn.org">contact@opencairn.org</a>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="wrap">
+  <div class="cta-band">
+    <h2>Own your training story.</h2>
+    <p>Spin up Cairn on your own hardware and keep every workout for good.</p>
+    <div class="actions">
+      <a class="btn primary" href="https://docs.opencairn.org/self-host">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 16V4m0 0L8 8m4-4l4 4M4 20h16"/></svg>
+        Self-host guide
+      </a>
+      <a class="btn" href="https://github.com/johnnycube/cairn-core">View the code</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="row">
+      <span class="brand" style="font-size:16px">
+        <span class="mark" style="width:24px;height:24px;border-radius:7px"><svg viewBox="0 0 24 24" fill="none"><path d="M3 19h18L14.5 7l-3 5-2-3L3 19z" fill="#04201c"/></svg></span>
+        Cairn
+      </span>
+      <div class="fl">
+        <a href="#why">Why</a>
+        <a href="#features">Features</a>
+        <a href="#platforms">Platforms</a>
+        <a href="#roadmap">Roadmap</a>
+        <a href="#agents">Agents</a>
+        <a href="#selfhost">Self-host</a>
+        <a href="#about">About</a>
+        <a href="https://docs.opencairn.org">Docs</a>
+        <a href="https://github.com/johnnycube/cairn-core">Source</a>
+        <a href="mailto:contact@opencairn.org">Contact</a>
+      </div>
+      <span>© Cairn · AGPL-3.0</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

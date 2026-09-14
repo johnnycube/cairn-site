@@ -9,13 +9,14 @@
 <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+<svg class="sprite" aria-hidden="true"><symbol id="brand" viewBox="0 0 24 24" fill="none"><path d="M3 19h18L14.5 7l-3 5-2-3L3 19z" fill="#04201c"/></symbol></svg>
 <div class="backdrop"></div>
 
 <header>
   <div class="wrap">
     <nav>
       <a class="brand" href="/">
-        <span class="mark"><svg viewBox="0 0 24 24" fill="none"><path d="M3 19h18L14.5 7l-3 5-2-3L3 19z" fill="#04201c"/></svg></span>
+        <span class="mark"><svg><use href="#brand" /></svg></span>
         Cairn
       </a>
       <div class="links">
@@ -35,7 +36,6 @@
   </div>
 </header>
 
-<!-- HERO -->
 <section class="hero">
   <div class="wrap">
     <span class="pill"><span class="dot"></span> Self-hosted · AGPL-3.0 · single binary</span>
@@ -51,12 +51,11 @@
     <p class="note">No SaaS lock-in. No data sold. One Go binary serves the API and the web UI; provider workers run as separate processes.</p>
 
     <div class="shot">
-      <img src="assets/dashboard.png" alt="Cairn dashboard — activity feed, training load, and segment leaderboard" />
+      <img src="assets/dashboard.png" alt="Cairn overview page: welcome banner with all-time totals, this-week and last-week summaries, an explore list, and the activity feed" />
     </div>
   </div>
 </section>
 
-<!-- TRUST -->
 <div class="trust">
   <div class="wrap">
     <div class="row">
@@ -70,11 +69,10 @@
   </div>
 </div>
 
-<!-- WHY -->
 <section class="block" id="why">
   <div class="wrap">
     <span class="eyebrow">Why Cairn exists</span>
-    <div class="h2">Your effort shouldn't be a subscription</div>
+    <h2 class="h2">Your effort shouldn't be a subscription</h2>
     <div class="prose">
       <p>Cairn started with a familiar frustration. Years of runs, rides and hikes — <b>your</b> heart rate, <b>your</b> routes, <b>your</b> progress — end up on platforms that treat them as their asset: gated behind logins, rationed through APIs, and increasingly reserved for whichever subscription tier you're willing to pay for this year.</p>
       <p>The pattern rarely reverses. Prices climb, features you relied on move up a tier, the product slowly bends away from the people who use it — and switching means leaving your history behind. None of that is surprising anymore. It's just not how your own training story should work.</p>
@@ -84,11 +82,10 @@
   </div>
 </section>
 
-<!-- FEATURES -->
 <section class="block" id="features">
   <div class="wrap">
     <span class="eyebrow">Everything in one place</span>
-    <div class="h2">One workout, every source — reconciled</div>
+    <h2 class="h2">One workout, every source — reconciled</h2>
     <p class="sub">Cairn ingests the same activity from multiple providers and merges it per-field under a policy you set. Your edits are always preserved.</p>
 
     <div class="grid">
@@ -127,11 +124,10 @@
   </div>
 </section>
 
-<!-- PLATFORMS & DATA -->
 <section class="block" id="platforms">
   <div class="wrap">
     <span class="eyebrow">Supported today</span>
-    <div class="h2">Platforms &amp; data fields</div>
+    <h2 class="h2">Platforms &amp; data fields</h2>
     <p class="sub">Four ways in — and every one lands in the same ingest pipeline, so a file upload or manual entry merges exactly like a provider import.</p>
 
     <div class="table-wrap">
@@ -181,31 +177,31 @@
   </div>
 </section>
 
-<!-- ROADMAP -->
+<!-- REVIEW: roadmap providers are not backed by any tracked issue/ROADMAP; confirm or cut -->
 <section class="block" id="roadmap">
   <div class="wrap">
     <span class="eyebrow">Roadmap</span>
-    <div class="h2">More providers on the way</div>
-    <p class="sub">Providers are standalone workers that speak a small proto + NATS contract, so a new platform never touches the core. These are next in line — ordered by demand, no dates promised.</p>
+    <h2 class="h2">More providers on the way</h2>
+    <p class="sub">Providers are standalone workers that speak a small proto + NATS contract, so a new platform never touches the core. These are next in line — no dates promised.</p>
     <div class="grid">
       <div class="card">
         <h3>Polar Flow</h3>
-        <p>Import via Polar AccessLink for the Vantage, Pacer and Grit X lines.</p>
+        <p>Import via Polar AccessLink.</p>
         <span class="tag">Planned</span>
       </div>
       <div class="card">
         <h3>Suunto</h3>
-        <p>Watch and dive-computer workouts through the Suunto partner API.</p>
+        <p>Workouts through the Suunto partner API.</p>
         <span class="tag">Planned</span>
       </div>
       <div class="card">
         <h3>COROS</h3>
-        <p>Pace, Apex and Vertix activities via the COROS training API.</p>
+        <p>Activities via the COROS training API.</p>
         <span class="tag">Planned</span>
       </div>
       <div class="card">
         <h3>Wahoo</h3>
-        <p>Rides and workouts from ELEMNT head units via the Wahoo Cloud API.</p>
+        <p>Rides and workouts via the Wahoo Cloud API.</p>
         <span class="tag">Exploring</span>
       </div>
       <div class="card">
@@ -213,28 +209,22 @@
         <p>Apple Watch workouts — likely via companion export, as there is no server-side API.</p>
         <span class="tag">Exploring</span>
       </div>
-      <div class="card">
-        <h3>Your provider here</h3>
-        <p>Implement the worker contract in any language and plug it in — the Python Garmin worker is the template.</p>
-        <span class="tag">Contribute</span>
-      </div>
     </div>
-    <p class="roadmap-note">Also watching: Zwift, Fitbit, Whoop, Oura and komoot. Want one sooner? Open an issue — demand decides the order.</p>
+    <p class="roadmap-note">Also watching: Zwift, Fitbit, Whoop, Oura and komoot. Want one sooner? Open an issue.</p>
   </div>
 </section>
 
-<!-- AGENTS / MCP -->
 <section class="block" id="agents">
   <div class="wrap">
-    <span class="eyebrow">New</span>
-    <div class="h2">Connect your agents over MCP</div>
-    <p class="sub">Cairn is an OAuth 2.1 authorization server, so native apps, third-party clients and AI agents all authenticate the same secure way — scoped to a single user.</p>
+    <span class="eyebrow">Agents &amp; MCP</span>
+    <h2 class="h2">Connect your agents over MCP</h2>
+    <p class="sub">Cairn is an OAuth 2.1 authorization server, so native apps, third-party clients and AI agents all authenticate the same way — scoped to a single user.</p>
     <div class="split">
       <ul>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span><b>Model Context Protocol server</b> — let an assistant read your activities, stats, training load and segments, scoped to your account.</span></li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span><b>OAuth everywhere it matters</b> — authorization-code + PKCE and dynamic client registration for native iOS/Android and third-party apps.</span></li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span><b>Granular scopes</b> — grant read-only access to an agent without handing over your whole account.</span></li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span><b>Still simple for humans</b> — password, OIDC login and passkeys remain first-class.</span></li>
+        <li><span><b>Model Context Protocol server</b> — let an assistant read your activities, stats, training load and segments, scoped to your account.</span></li>
+        <li><span><b>OAuth everywhere it matters</b> — authorization-code + PKCE and dynamic client registration for native iOS/Android and third-party apps.</span></li>
+        <li><span><b>Granular scopes</b> — grant read-only access to an agent without handing over your whole account.</span></li>
+        <li><span><b>Still simple for humans</b> — password, OIDC login and passkeys remain first-class.</span></li>
       </ul>
       <div class="code">
         <div class="bar"><i></i><i></i><i></i></div>
@@ -254,11 +244,10 @@
   </div>
 </section>
 
-<!-- SELF-HOST -->
 <section class="block" id="selfhost">
   <div class="wrap">
     <span class="eyebrow">Run it yourself</span>
-    <div class="h2">Up and running in minutes</div>
+    <h2 class="h2">Runs from a single compose file</h2>
     <p class="sub">One distroless binary with the web UI embedded, Postgres + TimescaleDB + PostGIS, NATS, and the provider workers you want. Deploy with Docker Compose or the included Kubernetes manifests.</p>
     <div class="split">
       <div class="code">
@@ -273,19 +262,18 @@
 <span class="s">→ open https://cairn.example</span></pre>
       </div>
       <ul>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span><b>Hexagonal core</b> — a clean domain → port → adapter architecture that's a pleasure to extend.</span></li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span><b>Pluggable providers</b> — workers are standalone repos that speak a proto + NATS contract; write your own.</span></li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span><b>Open source</b> — AGPL-3.0 core, free and yours to fork; the provider contract and workers are Apache-2.0.</span></li>
+        <li><span><b>Hexagonal core</b> — a clean domain → port → adapter architecture.</span></li>
+        <li><span><b>Pluggable providers</b> — workers are standalone repos that speak a proto + NATS contract; write your own.</span></li>
+        <li><span><b>Open source</b> — AGPL-3.0 core, free and yours to fork; the provider contract and workers are Apache-2.0.</span></li>
       </ul>
     </div>
   </div>
 </section>
 
-<!-- ABOUT -->
 <section class="block" id="about">
   <div class="wrap">
     <span class="eyebrow">About</span>
-    <div class="h2">Who's behind Cairn</div>
+    <h2 class="h2">Who's behind Cairn</h2>
     <div class="prose">
       <p>Hi, I'm <b>Johannes Küber</b> — sports enthusiast, programmer and security expert. When I'm not building software I'm usually out running, riding or in the mountains, which is exactly where all this data comes from.</p>
       <p>A platform like this has lived on my own server in one form or another for years. I've built it, outgrown it and rewritten it several times — as watches changed, providers came and went, and my ideas about training data matured. In 2026 I decided the latest rewrite shouldn't stay private, and Cairn became open source under AGPL-3.0.</p>
@@ -294,13 +282,12 @@
   </div>
 </section>
 
-<!-- CTA -->
 <div class="wrap">
   <div class="cta-band">
     <h2>Own your training story.</h2>
     <p>Spin up Cairn on your own hardware and keep every workout for good.</p>
     <div class="actions">
-      <a class="btn primary" href="https://docs.opencairn.org/self-host">
+      <a class="btn primary" href="https://docs.opencairn.org/self-host/overview/">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 16V4m0 0L8 8m4-4l4 4M4 20h16"/></svg>
         Self-host guide
       </a>
@@ -312,8 +299,8 @@
 <footer>
   <div class="wrap">
     <div class="row">
-      <span class="brand" style="font-size:16px">
-        <span class="mark" style="width:24px;height:24px;border-radius:7px"><svg viewBox="0 0 24 24" fill="none"><path d="M3 19h18L14.5 7l-3 5-2-3L3 19z" fill="#04201c"/></svg></span>
+      <span class="brand">
+        <span class="mark"><svg><use href="#brand" /></svg></span>
         Cairn
       </span>
       <div class="fl">
@@ -328,7 +315,7 @@
         <a href="https://github.com/johnnycube/cairn-core">Source</a>
         <a href="mailto:contact@opencairn.org">Contact</a>
       </div>
-      <span>© Cairn · AGPL-3.0</span>
+      <span>© 2026 Johannes Küber · AGPL-3.0</span>
     </div>
   </div>
 </footer>

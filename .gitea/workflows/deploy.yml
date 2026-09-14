@@ -40,15 +40,24 @@ jobs:
         run: |
           test -f index.html
           test -f styles.css
-          # every local href/src referenced from index.html must exist
+          # every local href/src referenced from index.html must exist;
+          # docs.opencairn.org deep links must resolve (follow redirects, fail on 4xx/5xx)
           missing=0
           for ref in $(grep -oE '(href|src)="[^"]+"' index.html \
-                       | sed -E 's/^(href|src)="//; s/"$//' \
-                       | grep -vE '^(https?:|#|mailto:|\/$)'); do
-            if [ ! -f "$ref" ]; then
-              echo "missing asset: $ref"
-              missing=1
-            fi
+                       | sed -E 's/^(href|src)="//; s/"$//'); do
+            case "$ref" in
+              https://docs.opencairn.org*)
+                if ! curl -fsSIL -o /dev/null "$ref"; then
+                  echo "broken docs link: $ref"
+                  missing=1
+                fi ;;
+              https:*|http:*|\#*|mailto:*|/) ;;
+              *)
+                if [ ! -f "$ref" ]; then
+                  echo "missing asset: $ref"
+                  missing=1
+                fi ;;
+            esac
           done
           exit $missing
 

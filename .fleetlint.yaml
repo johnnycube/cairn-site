@@ -31,3 +31,8 @@ overrides:
   ci/sast:
     enabled: false
     reason: no program code to scan (HTML/CSS only, no JavaScript)
+
+exceptions:
+  - rule: ci/actions-pinned
+    match: 're:johnny/build/'
+    reason: Own reusable deploy workflow on the Gitea instance, outside Renovate's reach; tag v11 is controlled by us.

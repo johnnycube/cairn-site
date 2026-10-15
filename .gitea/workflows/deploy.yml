@@ -84,7 +84,7 @@ jobs:
     needs: check
     # Deploy only on v* release tags — never from branches or PRs.
     if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
-    uses: johnny/build/.gitea/workflows/deploy-static-page.yaml@2516402e0d1316ba94465c7574e6a3d3042712c6 # v11
+    uses: johnny/build/.gitea/workflows/deploy-static-page.yaml@v11 # zizmor: ignore[unpinned-uses] own workflow on this Gitea, tag under our control
     with:
       artifact-name: site
     secrets:

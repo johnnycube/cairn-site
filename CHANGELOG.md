@@ -4,6 +4,11 @@ All notable changes to the Cairn marketing site are documented here. The
 format follows [Keep a Changelog](https://keepachangelog.com/). Dates are
 ISO-8601. The site version tracks the Cairn release it presents.
 
+## [0.2.3] — 2026-10-15
+
+### Changed
+- The footer credits "The Cairn authors" instead of a person.
+
 ## [0.2.2] — 2026-10-15
 
 ### Changed
@@ -31,6 +36,7 @@ https://opencairn.org), presenting Cairn v0.2.0.
 - Summit Teal theme matching the Cairn web UI; self-hosted fonts; no external
   requests.
 
+[0.2.3]: https://github.com/johnnycube/cairn-site/releases/tag/v0.2.3
 [0.2.2]: https://github.com/johnnycube/cairn-site/releases/tag/v0.2.2
 [0.2.1]: https://github.com/johnnycube/cairn-site/releases/tag/v0.2.1
 [0.2.0]: https://github.com/johnnycube/cairn-site/releases/tag/v0.2.0

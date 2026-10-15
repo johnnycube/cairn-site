@@ -1,6 +1,30 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:recommended"
-  ]
+    "config:best-practices",
+    ":semanticCommits",
+    "schedule:earlyMondays",
+    "customManagers:makefileVersions",
+    "customManagers:githubActionsVersions"
+  ],
+  "pre-commit": {
+    "enabled": true
+  },
+  "timezone": "Europe/Berlin",
+  "labels": ["dependencies"],
+  "minimumReleaseAge": "3 days",
+  "internalChecksFilter": "strict",
+  "packageRules": [
+    {
+      "description": "Actions and tool pins: low risk behind a green check, automerge.",
+      "matchManagers": ["github-actions", "custom.regex", "pre-commit"],
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "automerge": true,
+      "platformAutomerge": true
+    }
+  ],
+  "osvVulnerabilityAlerts": true,
+  "vulnerabilityAlerts": {
+    "labels": ["security"]
+  }
 }

@@ -1,0 +1,33 @@
+# .fleetlint.yaml: https://github.com/fleetlint/fleetlint
+version: 1
+extends:
+  - fleetlint:recommended
+facts:
+  visibility: public   # as the forge reported it at init; update it if the repository changes hands
+# discovered: stacks=[] forge=github visibility=public tier=1 (default) layout=single release=yes taskrunner=make container=none
+# Facts are re-detected on every run; pin one under `facts:` only when detection is wrong.
+overrides:
+  release/signing:
+    enabled: false
+    reason: tags deploy the static site to its web host; no release artifacts are published to sign
+  release/checksums:
+    enabled: false
+    reason: tags deploy the static site to its web host; no release artifacts are published to checksum
+  release/provenance:
+    enabled: false
+    reason: tags deploy the static site to its web host; no release artifacts are published to attest
+  release/sbom:
+    enabled: false
+    reason: hand-written HTML/CSS with no dependencies; no release artifacts are published
+  release/changelog-in-release:
+    enabled: false
+    reason: no forge release is created; CHANGELOG.md is the release record
+  quality/mutation-gate:
+    enabled: false
+    reason: no program code (HTML/CSS only, no JavaScript)
+  quality/duplication-gate:
+    enabled: false
+    reason: no program code (HTML/CSS only, no JavaScript)
+  ci/sast:
+    enabled: false
+    reason: no program code to scan (HTML/CSS only, no JavaScript)

@@ -31,6 +31,15 @@ overrides:
   ci/sast:
     enabled: false
     reason: no program code to scan (HTML/CSS only, no JavaScript)
+  release/reproducible-build:
+    enabled: false
+    reason: tags deploy the static site to its web host; nothing is distributed for anyone to rebuild and compare
+  changelog/generator-configured:
+    enabled: false
+    reason: CHANGELOG.md is hand-written per site revision; `make release` refuses a tag without its section
+  docs/adr-directory:
+    enabled: false
+    reason: a one-page static site; its few decisions are recorded in docs/ARCHITECTURE.md
 
 exceptions:
   - rule: ci/actions-pinned

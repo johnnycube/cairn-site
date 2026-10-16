@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Security vulnerability
+    url: https://github.com/johnnycube/cairn-site/security/advisories/new
+    about: Report vulnerabilities privately, never as a public issue (see SECURITY.md).
+  - name: Cairn itself (server, workers, docs)
+    url: https://github.com/johnnycube/cairn-core/issues
+    about: This repository is only the marketing site.

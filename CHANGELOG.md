@@ -4,6 +4,11 @@ All notable changes to the Cairn marketing site are documented here. The
 format follows [Keep a Changelog](https://keepachangelog.com/). Dates are
 ISO-8601. The site version tracks the Cairn release it presents.
 
+## [Unreleased]
+
+### Added
+- Code of conduct (Contributor Covenant), issue and pull-request templates.
+
 ## [0.2.3] — 2026-10-15
 
 ### Changed

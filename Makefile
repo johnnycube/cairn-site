@@ -12,7 +12,7 @@ STYLELINT_VERSION     ?= 17.16.0
 # renovate: datasource=go depName=github.com/zricethezav/gitleaks/v8
 GITLEAKS_VERSION      ?= v8.30.1
 # renovate: datasource=go depName=github.com/fleetlint/fleetlint
-FLEETLINT_VERSION     ?= v0.4.0
+FLEETLINT_VERSION     ?= v0.5.1
 NPX := npx --yes
 
 .PHONY: help tools fmt lint test cover audit links check-fast check release
